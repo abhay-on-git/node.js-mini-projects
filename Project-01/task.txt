@@ -13,3 +13,6 @@ POST /api/users - Create New users ✅
 PATCH /api/users/1 - Update user with ID 1 ✅ 
 
 DELETE /api/users/1 - Delete user with ID 1 ✅ 
+
+--------------------->>>>>>>>>>>>>>>>>>>>>>>
+create schema -> model

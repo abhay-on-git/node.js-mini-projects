@@ -2,73 +2,98 @@ const express = require( 'express' );
 const users = require("./MOCK_DATA.json");
 const fs = require('fs');
 const app = express();
+const mongoose = require("mongoose") ; 
+const { timeStamp } = require('console');
 const PORT = 8000;
 
 app.use(express.urlencoded({ extended: true }));
-app.get("/users",(req,res)=>{
+
+// mongoDB connection
+const db = mongoose.connect("mongodb://127.0.0.1:27017/practice-app-1")
+.then(()=>console.log("MongoDB connected"))
+.catch(()=>console.log("Error in MongoDB"));;
+// Schema
+const userSchema = new mongoose.Schema({
+    first_name:{
+        type :String,
+        required:true,
+    },
+    last_name:{
+        type:String
+    },
+    email:{
+        type: String ,
+        unique:true,
+        required:true,
+    },
+    gender:{
+        type:String,
+    },
+    job_title:{
+        type:String,
+    }
+},{timestamps:true});
+// model
+const User = new mongoose.model("User",userSchema);
+
+
+app.get("/users",async(req,res)=>{
+    const allDBUsers = await User.find({})
     const html = `
-    <ul>${users.map((user)=>`<li>${user.first_name}</li>`).join("")}</ul>
+    <ul>${allDBUsers.map((user)=>`<li>${user.first_name}</li>`).join("")}</ul>
     `
     res.send(html);
 })
 app.get("/",(req,res)=>{
-    res.send("HomePage")
+    res.json("HomePage")
 })
-app.get("/api/users",(req,res)=>{
-    res.json(users)
+app.get("/api/users",async(req,res)=>{
+    const allDBUsers = await User.find({})
+    res.send(allDBUsers);
 })
-app.route("/api/users/:id").get((req,res)=>{
-    const id = Number(req.params.id);
-    const user = users.find(user=>user.id === id)
-    res.json(user)
+app.route("/api/users/:id").get(async(req,res)=>{
+    const user = await User.findById(req.params.id)
+    if(!user) return res.status(404);
+    return  res.json(user);
 })
-app.post(("/api/users/"),(req,res)=>{
-    const body = req.body;
-    users.push({...body,id:users.length+1})
-    fs.writeFile("./MOCK_DATA.json",JSON.stringify(users),(err,data)=>{
-        return res.json({status :"success",id:users.length});
-    })
-    
-})
-app.delete(("/api/users/:id"),(req,res)=>{
-    const id = Number(req.params.id);
-    const userIndex = users.findIndex(user => user.id === id);
-    if(userIndex > -1){
-        users.splice(userIndex,1);
-        fs.writeFile("./MOCK_DATA.json",JSON.stringify(users),(err,data)=>{
-            return res.json({status:"deleted  succesfully",id:id});
-        })
-    }else{
-        return res.json({status : "Invalid user" , id: id})
+app.post(("/api/users/"),async(req,res)=>{
+    try{
+        const body = req.body;
+    if(!body.first_name || !body.last_name || !body.email || !body.job_title || !body.gender){
+        return res.status(400).json({msg:"All fields are required..."})
     }
+    const result = await User.create({
+      first_name:body.first_name,
+      last_name:body.last_name,
+      email:body.email,
+      gender:body.gender,
+      job_title:body.job_title
+    });
+    console.log(result)
+    return res.status(201).json({msg:"Succecss"});
+    }catch(err){
+        console.log(err)
+    }
+})  
+
+app.delete(("/api/users/:id"),async(req,res)=>{
+    await User.findByIdAndDelete(req.params.id)
+    return res.json({status:"succecss"});
+    // const userIndex = users.findIndex(user => user.id === id);
+    // if(userIndex > -1){
+    //     users.splice(userIndex,1);
+    //     fs.writeFile("./MOCK_DATA.json",JSON.stringify(users),(err,data)=>{
+    //         return res.json({status:"deleted  succesfully",id:id});
+    //     })
+    // }else{
+    //     return res.json({status : "Invalid user" , id: id})
+    // }
 })
 
-app.patch('/api/users/:id', (req, res) => {
-    const id = Number(req.params.id);
-    const userIndex = users.findIndex(user => user.id === id);
+app.patch('/api/users/:id', async(req, res) => {
+ await User.findByIdAndUpdate(req.params.id,{first_name:req.body.first_name})
+ return res.json({status:'User updated'});
 
-    if (userIndex !== -1) {
-        const updateUser = users[userIndex];
-        // Check if request body is empty
-        if (Object.keys(req.body).length === 0) {
-            return res.status(400).send('No data provided for update.');
-        }
-        for (const key in req.body) {
-            if (key in updateUser) {
-                updateUser[key] = req.body[key];
-            }
-        }
-        fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
-            if (err) {
-                console.error('Error writing to file:', err);
-                return res.status(500).send('Error writing to file.');
-            }
-            // Send response after file is successfully written
-            res.json({ status: "updated successfully", id: id });
-        });
-    } else {
-        res.status(404).send('User not found.');
-    }
 });
 
 
