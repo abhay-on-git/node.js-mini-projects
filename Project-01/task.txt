@@ -16,3 +16,6 @@ DELETE /api/users/1 - Delete user with ID 1 ✅
 
 --------------------->>>>>>>>>>>>>>>>>>>>>>>
 create schema -> model
+
+pass=VOAzHUKDgwNocDHX
+user=abhayagnihotri1585 
