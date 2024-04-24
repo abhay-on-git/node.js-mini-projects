@@ -4,7 +4,7 @@ const {handleRedirectToOriginalURL} = require( "../controllers/url" )
 const {handleAnalyticsById} = require('../controllers/url')
 
 const router  = express.Router();
-console.log("inside routes")
+// console.log("inside routes")
 router.post('/',handleGenrateNewShortURL)
 router.get('/:shortId',handleRedirectToOriginalURL)
 router.get('/analytics/:shortId',handleAnalyticsById)

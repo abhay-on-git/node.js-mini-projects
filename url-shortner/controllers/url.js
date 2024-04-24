@@ -1,14 +1,14 @@
 const shortid = require("shortid")
 const URL = require("../models/url")
 
-console.log("inside controllers")
+// console.log("inside controllers")
 
 async function handleGenrateNewShortURL(req,res){
-    console.log("handleGenrateNewShortURL")
+    // console.log("handleGenrateNewShortURL")
    const body = req.body;
    console.log(body)
    if(!body.url){
-    console.log("inside empty body")
+    // console.log("inside empty body")
     return res.status(400).json({error : "url is required"});
    }
    const shortID = shortid(8);
@@ -17,7 +17,9 @@ async function handleGenrateNewShortURL(req,res){
     redirectURL:body.url,
     visitHistory:[]
    })
-   return res.json({id:shortID})
+
+
+return res.redirect(`/test?id=${shortID}`)
 }
 
 async  function handleRedirectToOriginalURL(req,res){
@@ -42,7 +44,7 @@ async  function handleRedirectToOriginalURL(req,res){
             return res.status(404).json({ error: "Short URL not found" });
         }
 
-        console.log("Redirecting to:", entry.redirectURL);
+        // console.log("Redirecting to:", entry.redirectURL);
         res.redirect(entry.redirectURL);
     } catch (error) {
         console.error("Error during redirection:", error);
