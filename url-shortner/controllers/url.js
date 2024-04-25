@@ -17,9 +17,7 @@ async function handleGenrateNewShortURL(req,res){
     redirectURL:body.url,
     visitHistory:[]
    })
-
-
-return res.redirect(`/test?id=${shortID}`)
+ return res.redirect(`/?id=${shortID}`)
 }
 
 async  function handleRedirectToOriginalURL(req,res){
