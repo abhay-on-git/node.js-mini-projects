@@ -3,16 +3,18 @@ const URL = require('../models/url')
 const router = express.Router();
 
 router.get('/',async (req,res)=>{
-  const {id} = req.query
-  const allUrls = await URL.find({});
+  // const allUrls = await URL.find();
   res.render('home',{
-    urls:allUrls,
-    id :id
+    // urls:allUrls,
   })
 })
 
 router.get('/analytics',async (req,res)=>{
-  const allUrls = await URL.find({});
+  console.log("inside analytics route")
+  if(!req.user)  return res.redirect('/login');
+  console.log('user founded')
+  console.log(req.user._id);
+  const allUrls = await URL.find({createdBy:req.user._id});
   res.render('analytics',{
     urls:allUrls,
   })
