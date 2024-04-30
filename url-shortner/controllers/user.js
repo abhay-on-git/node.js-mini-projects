@@ -18,7 +18,7 @@ async function handleUserLogIn(req,res){
          if(!user)
          return res.render('login',{error : 'Invalid Input Found'})
          const token = setUser(user);
-         res.cookie('uid',token);
+         res.cookie('token',token);
          return res.redirect("/")
 }
 

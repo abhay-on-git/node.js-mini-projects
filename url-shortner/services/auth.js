@@ -4,15 +4,16 @@ function setUser(user){
     return jwt.sign({
         _id:user._id,
         email:user.email,
+        role:user.role,
     },secret);
 }
-function getUser(uid){
+  function getUser(uid){
     if(!uid) return  null;
     try{
-        return  jwt.verify(uid,secret)
+        return jwt.verify(uid,secret)
     }catch(err){
         console.log('galat token dala re tune')
-        return err;
+        throw new Error('Invalid Signture');
     }
 }
 module.exports = {
