@@ -1,0 +1,56 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: gilroy;
+}
+html,body{
+width:100%;
+height:100%;
+}
+
+/* Add some padding and a background color to the div */
+div {
+    padding: 20px;
+    background-color: #f5f5f5; /* Light gray background */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Style the table */
+table {
+    width: 100%; /* Make the table take up the full width of the container */
+    border-collapse: collapse; /* Remove spacing between table cells */
+    margin-bottom: 20px; /* Add space below the table */
+    border: 1px solid #ccc; /* Light gray border */
+}
+
+/* Style table headers */
+th {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px; /* Add some padding */
+    text-align: left; /* Align text to the left */
+    border-bottom: 2px solid #ccc; /* Thicker bottom border */
+}
+
+/* Style table cells */
+td {
+    padding: 10px; /* Add some padding */
+    border-bottom: 1px solid #ccc; /* Light gray bottom border */
+    text-align: left; /* Align text to the left */
+}
+
+/* Add a hover effect to table rows */
+tr:hover {
+    background-color: #f1f1f1; /* Light gray background on hover */
+}
+
+/* Optional: Style for mobile devices */
+@media (max-width: 600px) {
+    table {
+        font-size: 14px; /* Smaller text size */
+    }
+    th, td {
+        padding: 8px; /* Adjust padding */
+    }
+}

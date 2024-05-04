@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/signup.css">
     <title>signup</title>
 </head>
 <body>
-    <h1>SignUp</h1>
     <form method="post" action="/user">
-        <label>Enter your Name : </label>
-        <input name="name" required type="text">
-        <label>Enter your Email : </label>
+        <h1>SignUp</h1>
+        <input name="name" required type="text" placeholder="Enter your name">
         <input name="email" required type="text" placeholder="example@gmail.com">
-        <label>Enter your Password : </label>
-        <input type="text" required name="password" placeholder="123...">
+        <input type="text" required name="password" placeholder="password">
         <button type="submit">SignUp</button>
     </form>
 </body>

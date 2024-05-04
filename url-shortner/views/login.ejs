@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
+    <link rel="stylesheet" href="/login.css">
+    <title>LogIn</title>
 </head>
 <body>
-    <h1>LogIn</h1>
     <form method="post" action="/user/login">
-        <label>Enter your Email : </label>
+        <h1>LogIn</h1>
+        <div class="row">
         <input name="email" required type="text" placeholder="example@gmail.com">
-        <label>Enter your Password : </label>
-        <input type="text" required name="password" placeholder="123...">
-        <button type="submit">LogIn</button>
+        </div>
+        <div class="row">
+        <input type="text" required name="password" placeholder="password">
+        </div>
+        <div class="btns">
+            <button type="submit">LogIn</button>
+            <a href="/signup">SignUp</a>
+        </div>
     </form>
 </body>
 </html>

@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body{
-            font-family: gilroy;
-        }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/home.css">
+    <title>URL-Shortner</title>
 </head>
 <body>
-    <h1>Hello from ejs</h1>
-    <div>
-        <form method="POST" action="/url">
+    <div class="formP">
+        <nav><h2>URL-Shortner</h2>
+            <div class="btns">
+                <a href="/login">Login</a>
+                <a href="/signup">SignUp</a>
+            </div>
+            <select name="dropdown" id="dropdown-menu">
+                <option value="/analytics">Analytics</option>
+                <option value="/urls/admin">Admin Page</option>
+            </select>
+        
+            <script>
+                // JavaScript to handle the dropdown selection change
+                document.getElementById('dropdown-menu').addEventListener('change', function() {
+                    // Redirect to the selected option's value (URL)
+                    window.location.href = this.value;
+                });
+            </script>
+        </nav>
+        <h1>Short Your Long... URL  here.😃</h1>
+        <form class="form" method="POST" action="/url">
             <label name="url">Paste Your urls : </label>
             <input name="url" type="text" placeholder="https://example.com">
             <button type="submit">Generate</button>
-            <% if (locals.id) { %>
-                <li>URL Genrated : http://localhost:8001/url/<%= id %></li>
-            <% } %>
         </form>
+        <% if (locals.id) { %>
+            <li>URL Genrated : http://localhost:8001/url/<%= id %></li>
+        <% } %>
     </div>
     
 </body>
