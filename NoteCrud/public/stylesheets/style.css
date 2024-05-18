@@ -1,0 +1,130 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Main Container Styling */
+main {
+  display: flex;
+  width: 85%;
+  height: 85%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Left Panel Styling */
+.leftPannel {
+  width: 30%;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.leftPannel h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.leftPannel span {
+  color: #3498db;
+}
+
+.leftPannel form {
+  margin-bottom: 20px;
+}
+
+.leftPannel input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.leftPannel li {
+  list-style-type: none;
+  margin-bottom: 10px;
+  padding: 0.5vmax;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leftPannel li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  margin-right: 10px;
+  
+}
+
+.leftPannel li:hover {
+  background-color:#4e5d6dcc ;
+}
+
+.leftPannel li a:last-child {
+  color: #e74c3c;
+}
+.leftPannel li a:last-child:hover {
+  transform: scale(1.1);
+}
+
+/* Right Panel Styling */
+.rightPannel {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.rightPannel h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.rightPannel form {
+  display: flex;
+  flex-direction: column;
+}
+
+.rightPannel input[type="text"], .rightPannel textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.rightPannel textarea {
+  resize: none;
+  height: 400px;
+}
+
+.rightPannel button {
+  padding: 10px 15px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rightPannel button:hover {
+  background-color: #2980b9;
+}

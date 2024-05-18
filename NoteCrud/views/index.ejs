@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+  <title>NoteCrud</title>
+</head>
+<body>
+  <main>
+    <div class="leftPannel">
+      <h2><span>Note</span>Crud</h2>
+      <form action="/create" method="post">
+        <input type="text" name="filename" placeholder="filename">
+      </form>
+    
+      <% filenames.forEach(file => { %>
+        <li><a href="/<%= file %>"><%= file %></a><a href="/delete/<%= file %>"><i class="ri-delete-bin-6-line"></i></a></li>
+      <% }) %>
+    </div>
+    <div class="rightPannel">
+      <% if (!filename) { %>
+        <h2>No file selected</h2>
+      <% } else { %>
+        <h2><%= filename %></h2>
+        <% } %>
+      <br>
+    <form action="/update/<%= filename %>" method="post">
+      <h3>Content of <%= filename %></h3>
+      <br>
+      <textarea name="filecontent" id=""><%= data %></textarea>
+      <br>
+      <button type="submit">Save</button>
+    </form>
+    </div>  
+  </main>
+</body>
+</html>
