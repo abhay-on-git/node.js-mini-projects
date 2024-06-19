@@ -1,0 +1,42 @@
+<title>Home</title>
+<%- include('./partials/header') %>
+<%- include('./partials/nav') %>
+
+    <div class="container m-5 d-flex gap-5">
+        <div style="overflow: hidden;" class="image bg-dark w-50 h-full">
+            <img  class="object-fit-cover object-position-center" name="image" src="<%= propertyCard.image %>" alt="">
+        </div>
+        <div class="w-50 h-full">
+            <form action="/update/<%= propertyCard._id %>" method="post">
+            <div class="mb-1">
+              <label for="text" class="form-label">Image</label>
+              <input type="text" class="form-control" id="name" name="image" value="<%= propertyCard.image %>">
+            </div>
+            <div class="mb-1">
+              <label for="text" class="form-label">Owner Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%= propertyCard.name %>">
+            </div>
+            <div class="mb-1">
+              <label for="contact" class="form-label">Contact</label>
+              <input type="contact" class="form-control" id="contact" name="contact" value="<%= propertyCard.contact %>" >
+            </div>
+            <div class="mb-1">
+              <label for="description" class="form-label">Description</label>
+              <input type="text" class="form-control" id="description" name="description" value="<%= propertyCard.description %>">
+            </div>
+            <div class="mb-1">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" value="<%= propertyCard.address %>">
+              </div>
+            <div class="mb-1">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" value="<%= propertyCard.price %>">
+              </div>
+              <br>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+ 
+
+<%- include('./partials/footer') %>

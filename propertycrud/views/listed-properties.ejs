@@ -1,0 +1,46 @@
+<title>Home</title>
+<%- include('./partials/header') %>
+<%- include('./partials/nav') %>
+
+<% propertyCards.forEach(propertyCard => { %>
+    <div class="container m-5 d-flex gap-5">
+        <div class="image bg-dark w-50 h-full">
+            <img class="object-fit-center w-100 h-100 object-position-center" name="image" src="<%=propertyCard.image %>" alt="">
+        </div>
+        <div class="w-50 h-100">
+            <div class="mb-1 d-flex gap-3">
+              <label for="text" class="form-label">Owner Name</label>
+              <h4><%= propertyCard.name %></h4>
+            </div>
+            <div class="mb-1 d-flex gap-3">
+              <label for="contact" class="form-label">Contact</label>
+              <h4><%= propertyCard.contact %></h4>
+            </div>
+            <div class="mb-1 d-flex gap-3">
+              <label for="description" class="form-label">Description</label>
+              <p><%= propertyCard.description %></p>
+            </div>
+            <div class="mb-1 d-flex gap-3">
+                <label for="address" class="form-label">Address</label>
+                <pre><%= propertyCard.address %></pre>
+              </div>
+            <div class="mb-1 d-flex gap-3">
+                <label for="price" class="form-label">Price</label>
+                <h4><%= propertyCard.price %></h4>
+              </div>
+              <br>
+            <div class="container d-flex gap-3">
+                <form action="/update/<%= propertyCard._id %>">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                <form action="/delete/<%= propertyCard._id %>">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+ 
+<% }) %>
+
+<%- include('./partials/footer') %>
